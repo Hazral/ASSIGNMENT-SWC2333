@@ -1,0 +1,93 @@
+/**
+ * Program Purpose : To manage Flower Bliss's flower inventory efficiently. 
+ *
+ * Programmer : Aral
+ * Date : 20 February 2024
+ */
+//import the respective package
+import java.util.Scanner;
+
+//Driver class
+public class FlowerShop {
+    //Driver method
+    public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        //Declaration of an array of size 10 named flowerInventory
+        Flower[] flowerInventory = new Flower[10];
+        int flowerCount = 0;
+
+        while (flowerCount < 10) {
+            System.out.println("Enter flower details: ");
+            System.out.print("Name: ");
+            
+            String name = scanner.nextLine();
+            
+            System.out.print("Color: ");
+            String color = scanner.nextLine();
+            
+            System.out.print("Price: ");
+            double price = scanner.nextDouble();
+            scanner.nextLine(); 
+            
+            System.out.print("Quantity: ");
+            int quantity = scanner.nextInt();
+            scanner.nextLine();
+            
+            
+
+            Flower flower = new Flower(name, color, price, quantity);
+            flowerInventory[flowerCount] = flower;
+            flowerCount++;
+        }
+
+        System.out.println("\nFlower Inventory:");
+        for (Flower flower : flowerInventory) {
+            System.out.println(flower);
+        }
+
+        double totalValue = 0;
+        for (Flower flower : flowerInventory) {
+            totalValue += flower.getQuantity();
+        }
+        System.out.println("\nTotal value of flower inventory: " + totalValue);
+
+        System.out.print("\nSearch flower by name: ");
+        String searchName = scanner.nextLine();
+        Flower foundFlower = null;
+        for (Flower flower : flowerInventory) {
+            if (flower.getName().equalsIgnoreCase(searchName)) {
+                foundFlower = flower;
+                break;
+            }
+        }
+        if (foundFlower != null) {
+            System.out.println("Flower found: " + foundFlower);
+        } else {
+            System.out.println("Flower not found.");
+        }
+
+        System.out.print("\nEnter flower name to restock: ");
+        String restockName = scanner.nextLine();
+        
+        boolean flowerFound = false;
+        for (Flower flower : flowerInventory) {
+            if (flower.getName().equalsIgnoreCase(restockName)) {
+                System.out.print("Enter quantity to restock: ");
+                int restockQuantity = scanner.nextInt();
+                scanner.nextLine(); // consume newline not consumed by nextInt()
+                flower.setQuantity(flower.getQuantity() + restockQuantity);
+                
+                System.out.println("Flower restocked: " + flower);
+                flowerFound = true;
+                break;
+            }
+        }
+        
+        if (!flowerFound) {
+            System.out.println("Flower not found in inventory.");
+        }
+    }//end of main
+    
+}//end of driver class
