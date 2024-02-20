@@ -1,0 +1,79 @@
+/**
+ * Program Purpose : To manage Flower Bliss's flower inventory efficiently. 
+ *
+ * Programmer : Aral
+ * Date : 20 February 2024
+ */
+
+//Definition Class
+public class Flower
+{
+    private String name;
+    private String color;
+    private double price;
+    private int quantity;
+
+    // Constructor without parameter
+    public Flower() {
+        name = null;
+        color = null;
+        price = 0.0;
+        quantity = 0;
+    }//end of constructor
+
+    // Normal constructor with parameter
+    public Flower(String Flowername, String Flowercolor, double Flowerprice, int quantity) {
+        name = Flowername;
+        color = Flowercolor;
+        price = Flowerprice;
+        this.quantity = quantity;
+    }//end of constructor
+
+    // Mutators (setters) that sets all data members
+    public void setName(String name) {
+        this.name = name;
+    }//end of mutator
+
+    public void setColor(String color) {
+        this.color = color;
+    }//end of mutator
+
+    public void setPrice(double price) {
+        this.price = price;
+    }//end of mutator
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }//end of mutator
+    
+    // Retrievers (accessors / getters) for each data member
+    public String getName() {
+        return name;
+    }//end of accessor
+
+    public String getColor() {
+        return color;
+    }//end of accessor
+
+    public double getPrice() {
+        return price;
+    }//end of accessor
+
+    public int getQuantity() {
+        return quantity;
+    }//end of accessor
+    
+    // toString() method that displays all information about the Flower object
+    public String toString() {
+        return "Name: " + name + 
+               "\nColor: " + color + 
+               "\nPrice: " + price + 
+               "\nQuantity: " + quantity;
+    }//end of toString()
+
+    // Method to calculate the value of the flower
+    public double calcValue() {
+        return price * quantity;
+    }//end of calcValue
+    
+}//end of class
